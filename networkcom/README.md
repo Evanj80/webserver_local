@@ -1,6 +1,6 @@
 # Networkcom
 
-**TODO: Add description**
+**TODO: Exploring the power of Elixir in a local network stand point
 
 ## Installation
 
