@@ -3,7 +3,7 @@
 defmodule Networkcom.Router do
     use Plug.Router
     import Jason
-
+    #SaveState.start_state()
     plug(:match)
      plug Plug.Parsers, parsers: [:json],
                        pass: ["application/json"],
@@ -13,6 +13,8 @@ defmodule Networkcom.Router do
     post "/ping" do
       IO.inspect("Someone is accessing the server")
       x = IO.inspect conn.body_params
+      #SaveState.put_state(self(),"username",x["username"])
+      
       send_resp(conn, 200, "Pinged\n Your Username is #{x["username"]}\n Your Password is #{x["password"]}\n")
     end 
     
