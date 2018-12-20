@@ -1,12 +1,10 @@
 defmodule NetworkcomTest do
   use ExUnit.Case
 
-  SaveState.start_link(nil)
-
-  test "SaveState clear state is nil" do
+  test "SaveState clear state to []" do
     SaveState.clear()
   
-    assert nil = SaveState.get()
+    assert [] = SaveState.get()
   end
 
   test "SaveState can store state" do
@@ -15,7 +13,7 @@ defmodule NetworkcomTest do
   
     SaveState.set("foo")
   
-    assert "foo" = SaveState.get()
+    assert ["foo"] = SaveState.get()
   
   end
 
@@ -25,7 +23,7 @@ defmodule NetworkcomTest do
   
     SaveState.set(34)
   
-    assert 34 = SaveState.get()
+    assert [34] = SaveState.get()
   end
 
   test "SaveState Sets itself twice" do
@@ -36,7 +34,7 @@ defmodule NetworkcomTest do
   
     SaveState.set("Evan")
 
-    assert "Evan" = SaveState.get()
+    assert ["Evan", 34] = SaveState.get()
   end
 
   test "SaveState stores a value and then resets" do
@@ -46,7 +44,7 @@ defmodule NetworkcomTest do
 
     SaveState.clear()
   
-    assert nil = SaveState.get()
+    assert [] = SaveState.get()
   end
 
 

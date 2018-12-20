@@ -13,6 +13,8 @@ defmodule Networkcom.Application do
     opts = [strategy: :one_for_one, name: Networkcom.Supervisor]
 
     Logger.info("starting application....")
+    SaveState.start_link(nil)
+
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
