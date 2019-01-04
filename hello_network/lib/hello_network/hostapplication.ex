@@ -5,7 +5,9 @@ defmodule HelloNetwork.HostApplication do
     require Logger
   
     def start(_type, _args) do
-     HelloNetwork.setupplug()
+
+      HelloNetwork.Setup.setup()
+
     end
   end
   
