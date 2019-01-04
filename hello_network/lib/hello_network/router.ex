@@ -6,13 +6,14 @@ defmodule HelloNetwork.Router do
     alias HelloNetwork.Blink
     alias HelloNetwork.Savestate
     alias HelloNetwork.LedManager
-    #SaveState.start_state()
+    #Implement plug interface
     plug(:match)
-     plug Plug.Parsers, parsers: [:json],
+    plug Plug.Parsers, parsers: [:json],
                        pass: ["application/json"],
                        json_decoder: Jason
     plug(:dispatch)
 
+    #waits for a request with the http//...:8080/blink
     get "/blink" do
       IO.inspect("Someone is accessing the server")
       # x = IO.inspect conn.body_params
@@ -22,21 +23,21 @@ defmodule HelloNetwork.Router do
       #send_resp(conn, 200, "Pinged\n Your Username is #{x["username"]}\n Your Password is #{x["password"]}\n")
       send_resp(conn, 200, "The Raspberry Pi is responding and has begun to blink\n")
     end 
-
+    #waits for a request with the http//...:8080/on
     get "/on" do
       IO.inspect("Somoone wants to know if I can see this")
       LedManager.set(:on)
       |> IO.inspect(label: "This is thes blink.start process inspection")
       send_resp(conn, 200, "The Raspberry Pi is responding and has turned the light on\n")
     end
-
+    #waits for a request with the http//...:8080/cycle
     get "/cycle" do
       IO.inspect "Someone wants the LED to cycle throw patterns"
       LedManager.cycle()
       send_resp(conn, 200, "The Raspberry pi sucessfully cycled the light")
     end
 
-
+    #waits for a request that does not match any other get links
     match _ do
       IO.inspect("Someone is communicating using an invalid HTTP")
       LedManager.set(:off)

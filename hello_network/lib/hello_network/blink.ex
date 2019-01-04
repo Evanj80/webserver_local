@@ -5,7 +5,7 @@ defmodule HelloNetwork.Blink do
     @led Application.get_env(:hello_network, :led_api)
     require Logger
     
-
+    #Old way of controling light using savestate function
     def start(_type, _args, choice) do     
 
       led_list = Application.get_env(:hello_network, :led_list)

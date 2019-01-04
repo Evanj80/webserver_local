@@ -1,6 +1,6 @@
 defmodule HelloNetwork.HostApplication do
 
-
+#start function set up for host machine
     use Application
     require Logger
   
